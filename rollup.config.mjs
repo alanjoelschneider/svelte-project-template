@@ -4,6 +4,7 @@ import typescript from '@rollup/plugin-typescript';
 import autoPreprocess from 'svelte-preprocess';
 import svelte from 'rollup-plugin-svelte';
 import terser from '@rollup/plugin-terser';
+import css from 'rollup-plugin-css-only';
 import { spawn } from 'child_process';
 
 const production = !process.env.ROLLUP_WATCH;
@@ -52,6 +53,7 @@ export default {
       },
     }),
     typescript({ sourceMap: !production }),
+    css({ output: 'bundle.css' }),
     production && terser(),
   ],
 };
